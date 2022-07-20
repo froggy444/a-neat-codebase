@@ -1,0 +1,39 @@
+heap is a logical tree but not really a tree, there are two types of heaps min and max heap
+the property of max heap is that value at parent node is greater than its children, this is true for all parent nodes, 
+hence if we remove an element from the heap, it has to be adjusted
+a heap maybe sometimes seen as a priority queue and the top element is the element with the highest priority
+min heap is similar but has min instead of max 
+
+complexities of common heap operations are - 
+O(logn) - insertions 
+O(1)- time lookup for current min/max element, o(n) for arbitrary key that is not current min/max 
+O(logn) - deletion of max/min element
+
+Given the above properties of heaps use them only in the following conditions- 
+
+  401                          403
+/   \                          /  \
+403  402                    402   401
+
+min heap                      max heap 
+
+min heap-> when you care about the smallest element
+max heap-> when you care about the largest element
+                    and 
+           when you DON'T care about - fast loopkup, delete or search for arbitrary elements
+
+
+++++++++++++++++++++++implementation++++++++++++++++++++++++++++++
+
+heap functionality in python - it is provided by the 'heapq' module 
+VERY IMPORTANT 'heapq' ONLY PROVIDES MIN HEAP, if you require MAX HEAP, INSERT THE NEGATIVE VALUES FOR INTS/FLOATS AND get the desired output for max heap using a min heap provided internally 
+useful functions - 
+heapq.heapify(L) -> transforms elements of L into the heap inplace 
+heapq.nlargest(k, L) returns the k largest elements in L
+heapq.nsmallest(k, L) returns the k smallest elemets in L
+heapq.heappush(h,e) pushes element on the heap
+heapq.pop(h) pops the smallest element from heap
+heapq.heappushpop(h, a) pushes a on the heap and returns the smallest element``
+
+            
+
