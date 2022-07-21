@@ -14,3 +14,12 @@ def twoNumberSum(array, targetSum):
 			right -=1
 		
 	return[]
+
+# O(n) Time & Space
+def twoNumberSum(array, targetSum):
+	hash_map = {}
+    for i in range(len(array)):
+        if array[i] in hash_map:
+            return [i, hash_map[array[i]]]
+        else:
+            hash_map[targetSum - array[i]] = i
