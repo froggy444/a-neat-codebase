@@ -1,0 +1,11 @@
+stack is last in first out, if you require the most recent value go stack 
+good example valid parenthesis and daily temperatures - lc 739 
+
+first thik of brute force and then deduce if you need a stack 
+the common pattern is that value j (inner loop index is dependant on outer loop) for example in the brute force of daily temperatures - 
+we can see that 
+for (i < 0 ; i <= temp.length(); i++)
+    for (j = i+1, j <=temp.length; j++) # j is a function of i since in temperatures we dont need to look at temperatures before temp[i] in the array 
+
+    now raman shared that - u can traverse from 0 to i , or j(current) to len, or len to i 
+in daily temperaturs it makes sense to traverse the input from behind and build the stack in that fashion, however this is not true for all problems hence its imp to deduce using bruteforce
