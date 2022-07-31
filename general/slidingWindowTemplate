@@ -1,0 +1,78 @@
+package com.ramantrehan.codementor.algorithms;
+
+public class MaxSumSubarrayK {
+	public int findMaxSumSubarraySizeK(int[] arr, int k) {
+		
+		if(arr == null || arr.length == 0) {
+			throw new RuntimeException("input array is null");
+		}
+		
+		int windowStart = 0;
+		int windowEnd = 0;
+		
+		int currentSum = 0;
+		int maxSum = Integer.MIN_VALUE;
+		
+		while(windowEnd<arr.length) {
+			//consider windowEnd element and take its contribution
+			currentSum += arr[windowEnd];
+			
+			//check if window size has reached k
+			if(windowEnd - windowStart + 1 == k) {
+				//store the result and try to maximize the sum
+				maxSum = Math.max(maxSum, currentSum);
+				
+				//update current sum: remove windowStart element's contribution
+				currentSum -= arr[windowStart];
+				
+				//update the windowStart
+				windowStart++;
+			}
+			
+			windowEnd++;
+			//increment windowEnd
+		}
+		
+		return maxSum;
+	}
+}
+
+package com.ramantrehan.codementor.algorithms;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+public class MaxSumSubarrayKTest {
+	
+	private MaxSumSubarrayK obj;
+	
+	@BeforeEach
+	public void setup() {
+		this.obj = new MaxSumSubarrayK();
+	}
+	
+	@Test
+	public void findValidSum() {
+		int[] arr = {3, 5, 2, 2, 7};
+		int k = 2;
+		
+		int expectedMaxSum = 9;
+		int result = obj.findMaxSumSubarraySizeK(arr, k);
+		
+		assertEquals(expectedMaxSum, result);
+	}
+	
+	@Test
+	public void findValidSumNullArray() {
+		int[] arr = null;
+		int k = 2;
+		
+		Assertions.assertThrows(RuntimeException.class, () -> {
+			obj.findMaxSumSubarraySizeK(arr, k);
+		});
+	}
+}
+
